@@ -3,6 +3,7 @@
 #include <sstream>
 void lackOfArgument();
 void printToDo();
+void addTask(std::string);
 int main(int argc, char* argv[])
 {
     if(argc == 1){
@@ -13,6 +14,11 @@ int main(int argc, char* argv[])
         std::string argument(argv[1]);
         if(argument == "-l")
             printToDo();
+    }
+    if (argc == 3){
+        std::string argument(argv[1]);
+        if(argument == "-a")
+            addTask(argv[2]);
     }
     return 0;
 }
@@ -31,9 +37,6 @@ void printToDo()
     std::ifstream file("../README.md");
     if (file.is_open()) {
         std::string line;
-        if (line.size() == 0){
-            std::cout <<"No todos for today! :)" << std::endl;
-        }
         int numberOfTodo = 1;
         std::cout << std::endl;
         while(std::getline(file, line)) {
@@ -43,6 +46,17 @@ void printToDo()
             std::cout << numberOfTodo++ << " - ";
             std::cout << whatToDo << std::endl;
         }
+        if (line.size() == 0){
+            std::cout <<"No todos for today! :)" << std::endl;
+        }
         file.close();
+    }
+}
+
+void addTask(std::string)
+{
+    std::ofstream file("../README.md");
+    if (file.is_open()) {
+
     }
 }
